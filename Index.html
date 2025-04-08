@@ -1,0 +1,166 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Pra você</title>
+
+    <style>
+        body {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            background: linear-gradient(90deg, rgba(154,183,255,1) 0%, rgba(185,79,255,1) 40%, rgba(254,155,255,1) 70%, rgba(255,255,255,1) 100%);
+            margin: 0;
+        }
+
+        .container {
+            position: relative;
+            width: 800px;
+            height: 900px;
+            cursor: pointer;
+        }
+
+        .image {
+            position: absolute;
+            width: 100%;
+        }
+
+        .hidden {
+            display: none; /* Esconde instantaneamente */
+        }
+
+        .hidden2 {
+            opacity: 0;
+            pointer-events: none;
+        }
+
+        /* Animação de entrada do bilhete */
+        .fade-in-up {
+            animation: fadeInUp 0.8s ease-out forwards;
+        }
+
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(20px); /* Começa um pouco mais abaixo */
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0); /* Volta à posição normal */
+            }
+        }
+
+        /* Ajustando a ordem das camadas */
+        #parteBaixo {
+            z-index: 3; /* Base da carta */
+            position: absolute;
+            width: 800px; /* valor fixo que corresponde ao tamanho original da imagem */
+            pointer-events: auto;
+        }
+
+        #bilhete {
+            z-index: 2; /* O bilhete aparece sobre a base */
+            opacity: 0; /* Começa invisível */
+            top: 0;
+            transition: opacity 0.8s ease-in-out, transform 1s ease-in-out;
+        }
+
+        #parteCima {
+            z-index: 1; /* A aba fica por baixo do bilhete */
+        }
+
+        /* Bilhete sobe e dissolve */
+        .bilhete-sobe {
+          animation: bilheteUp 1s ease-in-out forwards;
+        }
+    
+        @keyframes bilheteUp {
+          from {
+            opacity: 1;
+            transform: translateY(0);
+          }
+          to {
+            opacity: 0;
+            transform: translateY(-30px);
+          }
+        }
+
+        /* Aumenta o bilhete após a carta sumir */
+        .bilhete-expandido {
+          animation: expandirBilhete 1s ease-in-out forwards;
+          z-index: 4;
+        }
+
+        @keyframes expandirBilhete {
+          0% {
+            transform: scale(1) translateY(0);
+          }
+          100% {
+            transform: scale(1.5) translateY(-80px);
+          }
+        }
+
+        /* Carta desce e desaparece */
+        .carta-desce #parteBaixo,
+        .carta-desce #parteCima,
+        .carta-desce #cartaFechada {
+          animation: cartaDown 1s ease-in-out forwards;
+        }
+
+        @keyframes cartaDown {
+          from {
+            transform: translateY(0);
+            opacity: 1;
+          }
+          to {
+            transform: translateY(100px);
+            opacity: 0;
+          }
+        }
+    </style>
+</head>
+<body>
+
+    <div class="container" id="cartaContainer" onclick="abrirCarta()">
+        <img id="cartaFechada" class="image" src="https://i.postimg.cc/bNpzhyFV/1743034207469.png" alt="Carta Fechada">
+        <img id="parteBaixo" class="image hidden" src="https://i.postimg.cc/2Sj84kQL/1743034329685.png" alt="Parte de Baixo" usemap="#bilheteMap">
+        <img id="bilhete" class="image hidden2" src="https://i.postimg.cc/XNKy44Mw/Carta-20250408014503.png" alt="Bilhete">
+        <img id="parteCima" class="image hidden" src="https://i.postimg.cc/pLWr2FQv/Carta-20250408013548.png" alt="Parte de Cima Aberta">
+    </div>
+    
+    <map name="bilheteMap">
+        <area shape="rect" coords="360,310,432,348" href="#" onclick="removerCarta(); return false;" alt="Clique">
+    </map>
+
+    <script>
+        function abrirCarta() {
+          document.getElementById("cartaFechada").classList.add("hidden");
+          document.getElementById("parteBaixo").classList.remove("hidden");
+          document.getElementById("parteCima").classList.remove("hidden");
+    
+          const bilhete = document.getElementById("bilhete");
+          bilhete.classList.remove("hidden2");
+          bilhete.style.opacity = "1";
+        }
+    
+        function removerCarta() {
+          const cartaContainer = document.getElementById("cartaContainer");
+          const bilhete = document.getElementById("bilhete");
+          cartaContainer.classList.add("carta-desce");
+    
+          setTimeout(() => {
+            document.getElementById("parteBaixo").remove();
+            document.getElementById("parteCima").remove();
+            document.getElementById("cartaFechada").remove();
+    
+            bilhete.classList.add("bilhete-expandido");
+          }, 1500);
+        }
+    
+        document.getElementById("cartaContainer").addEventListener("click", abrirCarta, { once: true });
+      </script>
+    
+</body>
+</html>

@@ -26,11 +26,11 @@ Projeto simples e delicado feito com HTML, CSS e JavaScript puro. A "Carta" é u
 1. Clone o repositório ou baixe o arquivo `.html`.
 2. Abra o arquivo diretamente no navegador.
 3. Clique na carta e veja a magia acontecer. ✨
-4. Ou, se preferir, **basta enviar o link [ataldaaiume.github.io](https://ataldaaiume.github.io)** — além de prático, isso também ajuda a divulgar meu perfil do GitHub 💜
+4. Ou, se preferir, **basta enviar o link [ataldaaiume.github.io](https://ataldaaiume.github.io/Carta/)** — além de prático, isso também ajuda a divulgar meu perfil do GitHub 💜
 
 ## 📦 Compartilhando com Alguém
 
-- O projeto está disponível em: **[ataldaaiume.github.io](https://ataldaaiume.github.io)**  
+- O projeto está disponível em: **[ataldaaiume.github.io](https://ataldaaiume.github.io/Carta/)**  
 - Você pode simplesmente copiar o link e enviar para quem quiser! É rápido, bonito e ainda ajuda a divulgar meu perfil no GitHub 💜  
 - Se preferir enviar diretamente, também pode baixar o `.html` e enviar por mensagem ou e-mail.
 

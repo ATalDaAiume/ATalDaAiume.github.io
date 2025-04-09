@@ -122,9 +122,8 @@
   @media screen and (max-width: 720px) {
     .container {
         position: relative;
-        width: 800px;
+        width: 100%;
         height: 600px;
-        cursor: pointer;
         display: flex;
     }
 
@@ -132,7 +131,38 @@
         width: 100%;
         height: auto;
     }
+    
+    /* Bilhete sobe e dissolve */
+    .bilhete-sobe {
+      animation: bilheteUp 1s ease-in-out forwards;
+    }
+
+    @keyframes bilheteUp {
+      from {
+        opacity: 0;
+        transform: translateY(10px); /* Começa um pouco mais abaixo */
+      }
+      to {
+       opacity: 1;
+       transform: translateY(-10px);
+      }
+    }
+
+      /* Aumenta o bilhete após a carta sumir */
+  .bilhete-expandido {
+    animation: expandirBilhete 1s ease-in-out forwards;
+    z-index: 4;
   }
+
+  @keyframes expandirBilhete {
+    0% {
+      transform: scale(1) translateY(0);
+    }
+    100% {
+      transform: scale(1.5) translateY(0px);
+    }
+  }
+}
 </style>
 </head>
 <body>
@@ -158,6 +188,12 @@
     bilhete.classList.add("bilhete-sobe");
     bilhete.classList.remove("hidden2");
     bilhete.style.opacity = "1";
+
+    // No celular, torna o bilhete inteiro clicável
+    if (window.innerWidth <= 720) {
+      cartaContainer.style.cursor = "pointer";
+      cartaContainer.onclick = removerCarta;
+    }
   }
 
   function removerCarta() {
@@ -174,7 +210,7 @@
       }, 1500);
   }
 
-  document.getElementById("cartaContainer").addEventListener("click", abrirCarta, { once: true });
+document.getElementById("cartaContainer").addEventListener("click", abrirCarta, { once: true });
 </script>
     
 </body>

@@ -34,7 +34,7 @@ Projeto simples e delicado feito com HTML, CSS e JavaScript puro. A "Carta" é u
 - Você pode simplesmente copiar o link e enviar para quem quiser! É rápido, bonito e ainda ajuda a divulgar meu perfil no GitHub 💜  
 - Se preferir enviar diretamente, também pode baixar o `.html` e enviar por mensagem ou e-mail.
 
-## 📌 Observações
+## 📝 Observações
 
 - As imagens são hospedadas externamente via PostImage.
 - Se quiser personalizar o bilhete (por exemplo, mudar a mensagem ou as imagens para enviar a outra pessoa), você pode:
